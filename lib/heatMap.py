@@ -141,11 +141,11 @@ def DrawResult(diff_img: np.array, sav_fName, rawPATH, params=None):
             raw_diff_1ch ([numpy.array]): Ab_score 을 채점하기 위한 행렬
             isAbnormal ([boolean]): 큰비전 Params 에 하나라도 걸리는 요소가 있을 시 True 즉 비정상 반환.
         """
-        
+        # rint(raw_img)p
         # rawPATH = os.path.join(rawPATH, sav_fName[:-4] + param.PREFIX_RAW)
-        # rawPATH = rawPATH + '/' + sav_fName[:-12] + param.PREFIX_RAW
-        print(f'rawPATHHJ: {rawPATH}')
+        # rawPATH = rawPATH + '/' + sav_fName[:-12] #+ param.PREFIX_RAW
 
+        print(f'rawPATHHJ: {rawPATH}')
         raw_img = cv2.imread(rawPATH, cv2.IMREAD_COLOR)
         
         xBias = 510

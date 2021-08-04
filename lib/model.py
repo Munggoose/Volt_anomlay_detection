@@ -25,11 +25,10 @@ import time
 import copy
 import csv
 import parameters as params
-
+from preprocessing import get_preprocess_img
 
 import matplotlib.pyplot as plt
 import lib.heatMap as heatMap
-
 
 
 
@@ -40,6 +39,7 @@ class BaseModel():
         ##
         # Seed for deterministic behavior
         self.seed(opt.manualseed)
+        
 
         # Initalize variables.
         self.opt = opt
@@ -221,7 +221,7 @@ class BaseModel():
                 print('   Loaded weights.')
 
             self.opt.phase = 'test'
-
+            
             # Create big error tensor for the test set.
             self.an_scores = torch.zeros(size=(len(self.dataloader['test'].dataset),), dtype=torch.float32, device=self.device)
             self.gt_labels = torch.zeros(size=(len(self.dataloader['test'].dataset),), dtype=torch.long,    device=self.device)
@@ -276,14 +276,14 @@ class BaseModel():
                     
                     anomaly_img = heatMap.Draw_Anomaly_image(real_img, diff_img, ch3_diff_img, self.opt.batchsize)
                     
-                    rawPATH = './RAW' # 1280x720 원본 이미지 경로.
+                    # rawPATH = './RAW' # 1280x720 원본 이미지 경로.
                     rawPATH = params.raw_PATH
                     print(f'rawPATH: {rawPATH}')
                     allFiles, _ = map(list, zip(*self.dataloader['test'].dataset.samples))
                     sav_fName = allFiles[i]
                     sav_fName = sav_fName.replace("\\", '/')
                     sav_fName = sav_fName[sav_fName.rfind('/')+1:]
-
+                    print(sav_fName,'sssss')
                     print(f'{i+1: 5d} / {total_test_size} : {i / total_test_size * 100: .2f}%')
                     raw_img, new_diff_img, is_abnormal = heatMap.DrawResult(diff_img, sav_fName, rawPATH, params=None)
 
@@ -491,7 +491,7 @@ class Ganomaly(BaseModel):
 
     def __init__(self, opt, dataloader):
         super(Ganomaly, self).__init__(opt, dataloader)
-
+        
         # -- Misc attributes
         self.epoch = 0
         self.times = []
@@ -597,11 +597,13 @@ class Ganomaly(BaseModel):
         self.backward_d()
         self.optimizer_d.step()
         if self.err_d.item() < 1e-5: self.reinit_d()
-    
+
+
     def predict(self,input,_path):
         """[summary]
         Args:
             input ([type]): input image
+            _path : raw_image_path
         """
         self.load_weight = True
       

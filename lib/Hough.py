@@ -21,7 +21,6 @@ def prnFile(rootDir, prefix):
     return tmp
 
 def img_Contrast(img):
-    
     lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
     l, a, b = cv2.split(lab)
     clahe = cv2.createCLAHE(clipLimit=3, tileGridSize=(8,8))

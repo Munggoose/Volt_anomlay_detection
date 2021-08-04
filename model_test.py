@@ -2,6 +2,8 @@
 """
 # pylint: disable=C0301,E1101,W0622,C0103,R0902,R0915
 
+
+
 ##
 from collections import OrderedDict
 import os
@@ -15,18 +17,23 @@ import torch.nn as nn
 import torch.utils.data
 import torchvision.utils as vutils
 
+
+
 from lib.networks import NetG, NetD, weights_init
 from lib.visualizer import Visualizer
 from lib.loss import l2_loss
 from lib.evaluate import evaluate
 
-from lib.model import *
+# from lib.model import 
 
 from options import Options
 from lib.data import load_data
+
 from lib.model import Ganomaly
+
 #from lib.casting_dataset import *
 import torch
+
 
 ##
 def test():
@@ -53,4 +60,5 @@ def test():
     print(result)
 
 if __name__ == '__main__':
+    print('model test run!!!!')
     test()

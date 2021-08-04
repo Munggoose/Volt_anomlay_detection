@@ -4,7 +4,8 @@ imsize = 128
 PREFIX_RAW = '.bmp'
 PREFIX_SAV = '.bmp'
 raw_PATH = './RAW'
-raw_PATH = 'C:/knv/Projs/2021-1/KnV/0.MAIN/GANomaly_Anomaly_Detection/RAW'
+# raw_PATH = 'C:\\Users\\LMH\\Desktop\\data_list\\raw'
+# raw_PATH = 'C:/knv/Projs/2021-1/KnV/0.MAIN/GANomaly_Anomaly_Detection/RAW'
 
 
 #True:  abnormal score으로 정상/비정상 판별
